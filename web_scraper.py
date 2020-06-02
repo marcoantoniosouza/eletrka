@@ -37,7 +37,9 @@ def faturas(uc):
     faturas = []
 
     for i in range(0, int(len(linhas)/4)):
-        mes = (linhas[i*4].strong.text)
+        mes_ano = (linhas[i*4].strong.text)
+        mes, ano = mes_ano.split('/')
+
         vencimento = (linhas[i*4+1].strong.text)
         valor = (linhas[i*4+2].strong.text)
 
@@ -53,6 +55,7 @@ def faturas(uc):
         dados['uc'] = uc
         dados['status'] = status
         dados['mes'] = mes
+        dados['ano'] = ano
         dados['vencimento'] = vencimento
         dados['valor'] = valor
         
@@ -79,5 +82,5 @@ def fatura(uc, mes_ano):
                        'vencimento': dados[22].text, 'total': dados[23].text, 'cod_barras': dados[39].text }
     except:
         pass
-        
+
     return json.dumps(dict_fatura)

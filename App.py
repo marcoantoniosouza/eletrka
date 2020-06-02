@@ -16,11 +16,10 @@ def get_unidades():
     cpf = request.args.get('cpf')
     return unidades(cpf)
 
-@app.route("/faturas/<uc>/<mes_ano>")
+@app.route("/faturas/<uc>/<ano>/<mes>")
 #@auth.login_required
-def get_fatura(uc, mes_ano):
-    mes_ano = mes_ano.replace('_', '/')
-    return fatura(uc, mes_ano)
+def get_fatura(uc, mes, ano):
+    return fatura(uc, mes + '/' + ano)
 
 @app.route("/faturas/<uc>")
 #@auth.login_required
