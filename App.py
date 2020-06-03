@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, request, Response
 from flask_httpauth import HTTPBasicAuth
 from web_scraper import unidades, faturas, fatura
 
@@ -14,14 +14,23 @@ def hello():
 #@auth.login_required
 def get_unidades():
     cpf = request.args.get('cpf')
-    return unidades(cpf)
+    response = Response(unidades(cpf), mimetype='application/json')
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    
+    return response
 
 @app.route("/faturas/<uc>/<ano>/<mes>")
 #@auth.login_required
 def get_fatura(uc, mes, ano):
-    return fatura(uc, mes + '/' + ano)
+    response = Response(fatura(uc, mes + '/' + ano), mimetype='application/json')
+    response.headers.add('Access-Control-Allow-Origin', '*')
+
+    return response
 
 @app.route("/faturas/<uc>")
 #@auth.login_required
 def get_faturas(uc):
-    return faturas(uc)
+    response = Response(faturas(uc), mimetype='application/json')
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    
+    return response

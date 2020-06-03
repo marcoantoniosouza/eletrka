@@ -27,7 +27,7 @@ def unidades(cpf):
 
 def faturas(uc):
     url = 'http://2via.equatorialalagoas.com.br:8081/segundavia/listafaturas.php'
-    form = {"uc": uc} # "12618390"
+    form = {"uc": uc}
 
     response = requests.post(url, data=form)
 
@@ -56,6 +56,7 @@ def faturas(uc):
         dados['status'] = status
         dados['mes'] = mes
         dados['ano'] = ano
+        dados['mes_ano'] = mes_ano
         dados['vencimento'] = vencimento
         dados['valor'] = valor
         
