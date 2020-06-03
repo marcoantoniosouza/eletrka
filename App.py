@@ -1,6 +1,7 @@
 from flask import Flask, request, Response
 from flask_httpauth import HTTPBasicAuth
 from flask_cors import CORS
+from waitress import serve
 from web_scraper import unidades, faturas, fatura
 
 app = Flask(__name__)
@@ -36,3 +37,7 @@ def get_faturas(uc):
     response.headers.add('Access-Control-Allow-Origin', '*')
     
     return response
+
+if __name__ == "__main__":
+   #app.run() ##Replaced with below code to run it using waitress 
+   serve(app, host='0.0.0.0', port=5000)
