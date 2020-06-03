@@ -1,8 +1,10 @@
 from flask import Flask, request, Response
 from flask_httpauth import HTTPBasicAuth
+from flask_cors import CORS
 from web_scraper import unidades, faturas, fatura
 
 app = Flask(__name__)
+CORS(app)
 auth = HTTPBasicAuth()
 
 @app.route("/")
