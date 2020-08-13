@@ -8,11 +8,6 @@ app = Flask(__name__)
 CORS(app)
 auth = HTTPBasicAuth()
 
-@app.route("/")
-#@auth.login_required
-def hello():
-    return "Hello, World!"
-
 @app.route("/unidades")
 #@auth.login_required
 def get_unidades():
